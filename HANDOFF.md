@@ -1,0 +1,20 @@
+# UI flow handoff
+
+Branch: design/ui-ux. Local prototype only; PWA checkout untouched.
+
+Implements calendar-independent 3/5-day rotation; start/pause/resume; one exercise at a time; planned sets/reps prefill; visible effort and notes; automatic local workout date; explicit skip, exercise list, completion review, and finish-to-advance. No YouTube, pain, energy, or per-exercise date controls.
+
+Plan week remains manual pending agreement. Three-day mode uses existing Days 1–3.
+
+Storage: new ft2-flow-v2 key, separate from original ft2-journal-v1. Original history is preserved but not migrated or displayed. Backups use format 2; legacy format-1 import requires migration before production merge.
+
+Browser checks: planned prefill; next exercise; save/reload/resume at exercise 2; all six complete and review; finishing Day 1 yields Day 2. Plan data unchanged. Physical phone testing and legacy history migration remain pre-merge work.
+
+Merge after UX review; preserve PWA files and update its cache version. Changes include app.js, index.html, style.css.
+
+Per-set update: each exercise now stores setLog with reps, weight, effort, and completion per set. Previous completed-session weights seed matching sets (last recorded set is fallback). Manual/+5 lb changes carry to later unfinished sets only. Effort buttons are required before completing a new set. Completed legacy exercise records are expanded lazily without overwriting original history. Backup validator accepts and checks set records. Logic checks cover matching weights, carry, completed preservation and blank defaults; browser confirms controls render. No deployment.
+
+Effort revision: effort is now one exercise-level value, selected after the last set and before Complete & next/review. Individual sets require reps/time only, with weight optional. Existing set effort values remain preserved for compatibility but are not requested or overwritten. Browser verified final-set resume opens the overall exercise effort screen.
+Exercise effort now uses a 1–10 dropdown, initially unselected, preserving the existing exercise-level score.
+Next-flow revision: each Next completes one set; final set advances directly to next exercise (or workout review). Removed separate effort/completion screen and Edit sets button. Exercise effort is inline, defaults to 6, remains exercise-level.
+Set-click fix: active legacy completion no longer marks every set complete. Next always follows the first unfinished set; set markers are informational. Restart exercise clears completion flags only, preserving entered values. Verified exactly 3 clicks for 3 sets, advancing only on click 3. Isolated fix branch because original checkout had changed to design/slate-club.
