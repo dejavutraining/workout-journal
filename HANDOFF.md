@@ -16,3 +16,4 @@ Per-set update: each exercise now stores setLog with reps, weight, effort, and c
 
 Effort revision: effort is now one exercise-level value, selected after the last set and before Complete & next/review. Individual sets require reps/time only, with weight optional. Existing set effort values remain preserved for compatibility but are not requested or overwritten. Browser verified final-set resume opens the overall exercise effort screen.
 Exercise effort now uses a 1–10 dropdown, initially unselected, preserving the existing exercise-level score.
+Next-flow revision: each Next completes one set; final set advances directly to next exercise (or workout review). Removed separate effort/completion screen and Edit sets button. Exercise effort is inline, defaults to 6, remains exercise-level.
