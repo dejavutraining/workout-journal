@@ -1,15 +1,13 @@
-# UI/UX handoff — concept 01
+# UI flow handoff
 
-Branch: design/ui-ux
-Base: 8582849 (Save workout fields as they are entered)
-Source: dejavutraining/workout-journal
+Branch: design/ui-ux. Local prototype only; PWA checkout untouched.
 
-This separate checkout contains a working visual prototype of the existing app. The first direction retains forest green, cream, and serif headings while reducing the header, keeping navigation visible when scrolling, grouping week/day controls, and improving logging field hierarchy and touch targets.
+Implements calendar-independent 3/5-day rotation; start/pause/resume; one exercise at a time; planned sets/reps prefill; visible effort and notes; automatic local workout date; explicit skip, exercise list, completion review, and finish-to-advance. No YouTube, pain, energy, or per-exercise date controls.
 
-Only style.css changes app behavior visually. index.html, app.js, data.json, storage keys, manifest, icons, and service worker are untouched. No private workout history is included.
+Plan week remains manual pending agreement. Three-day mode uses existing Days 1–3.
 
-Review Workout, Progress, and Backup on a narrow phone screen and desktop. Check week/day changes, numeric entry, completion, reload persistence, keyboard focus, and an export/import round trip. Browser preview checks are recorded in the accompanying review note; physical iPhone testing is still required.
+Storage: new ft2-flow-v2 key, separate from original ft2-journal-v1. Original history is preserved but not migrated or displayed. Backups use format 2; legacy format-1 import requires migration before production merge.
 
-Merge after design approval: bring the UI commit into the PWA checkout by fetching this local repository and cherry-picking the UI commit. Review any CSS conflicts, then let the PWA owner update the service-worker cache version so existing installs receive the stylesheet. Do not replace the PWA index.html with a stale copy from this checkout.
+Browser checks: planned prefill; next exercise; save/reload/resume at exercise 2; all six complete and review; finishing Day 1 yields Day 2. Plan data unchanged. Physical phone testing and legacy history migration remain pre-merge work.
 
-Next design decisions: keep this calm visual direction or explore a more athletic look; show all exercises or introduce a focused exercise view. No merge or deployment has been performed.
+Merge after UX review; preserve PWA files and update its cache version. Changes include app.js, index.html, style.css.
