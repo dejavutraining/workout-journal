@@ -1,0 +1,14 @@
+/* Responsive structure; independent of workout behavior. */
+*{box-sizing:border-box}
+:root{font-family:var(--font);font-size:16px;background:var(--page);color:var(--ink)}
+body{margin:0}
+header{max-width:720px;margin:auto;padding:30px 20px 22px}
+main{max-width:720px;margin:auto;padding:0 20px 24px}
+nav{position:sticky;top:0;z-index:2;display:flex;background:var(--page);border-bottom:1px solid var(--border);margin-bottom:18px}
+.selectors,.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.selectors{padding:16px;background:var(--panel);border-radius:var(--radius)}
+.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:20px 0}
+article{margin:18px 0;padding:20px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius)}
+footer{text-align:center;padding:20px 16px max(28px,env(safe-area-inset-bottom))}
+@media(min-width:700px){header{padding-top:42px}article{padding:26px}.fields{gap:16px}}
+@media(max-width:360px){header,main{padding-left:14px;padding-right:14px}article{padding:16px}.fields{grid-template-columns:repeat(2,minmax(0,1fr))}.fields>:last-child{grid-column:1/-1}}
