@@ -13,3 +13,5 @@ Browser checks: planned prefill; next exercise; save/reload/resume at exercise 2
 Merge after UX review; preserve PWA files and update its cache version. Changes include app.js, index.html, style.css.
 
 Per-set update: each exercise now stores setLog with reps, weight, effort, and completion per set. Previous completed-session weights seed matching sets (last recorded set is fallback). Manual/+5 lb changes carry to later unfinished sets only. Effort buttons are required before completing a new set. Completed legacy exercise records are expanded lazily without overwriting original history. Backup validator accepts and checks set records. Logic checks cover matching weights, carry, completed preservation and blank defaults; browser confirms controls render. No deployment.
+
+Effort revision: effort is now one exercise-level value, selected after the last set and before Complete & next/review. Individual sets require reps/time only, with weight optional. Existing set effort values remain preserved for compatibility but are not requested or overwritten. Browser verified final-set resume opens the overall exercise effort screen.
