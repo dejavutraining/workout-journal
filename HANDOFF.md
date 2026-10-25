@@ -11,3 +11,5 @@ Storage: new ft2-flow-v2 key, separate from original ft2-journal-v1. Original hi
 Browser checks: planned prefill; next exercise; save/reload/resume at exercise 2; all six complete and review; finishing Day 1 yields Day 2. Plan data unchanged. Physical phone testing and legacy history migration remain pre-merge work.
 
 Merge after UX review; preserve PWA files and update its cache version. Changes include app.js, index.html, style.css.
+
+Per-set update: each exercise now stores setLog with reps, weight, effort, and completion per set. Previous completed-session weights seed matching sets (last recorded set is fallback). Manual/+5 lb changes carry to later unfinished sets only. Effort buttons are required before completing a new set. Completed legacy exercise records are expanded lazily without overwriting original history. Backup validator accepts and checks set records. Logic checks cover matching weights, carry, completed preservation and blank defaults; browser confirms controls render. No deployment.
