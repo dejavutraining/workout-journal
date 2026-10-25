@@ -14,3 +14,12 @@ const full=run('JSON.parse(JSON.stringify({format:3,state}))');context.full=full
 assert.throws(()=>Plans.validate({...p,sessions:[p.sessions[0],p.sessions[0]]}));run("const broken=JSON.parse(JSON.stringify(state));broken.active.entries[0].exerciseId='wrong';try{validate(broken);throw Error('accepted bad record')}catch(e){if(e.message==='accepted bad record')throw e}");
 console.log('PASS: week 4 migration, active per-set preservation, one Next per set, spreadsheet import, repeat-import deduplication, flexible sessions, rest days, kg controls, program isolation, full backup round-trip and invalid references.');
 
+// Import preview, safe confirmation, repeated import, and storage-failure handling.
+context.freshRecords={format:1,logs:{'1-18':{J:'2026-10-24',K:'Yes',L:3,M:10,N:50,R:'import test'}}};
+run("view='backup';render();previewRecords(JSON.stringify(freshRecords))");assert(nodes.get('#restore-preview').innerHTML.includes('1 exercise records'));
+const oldCount=run('state.history.length');nodes.get('#merge-backup').onclick();assert.equal(run('state.history.length'),oldCount+1);
+run('previewRecords(JSON.stringify(freshRecords))');assert(nodes.get('#restore-preview').innerHTML.includes('already imported'));
+run("previewRecords('{bad json')");assert(nodes.get('#restore-preview').textContent.startsWith('Could not import'));
+context.failRecords={format:1,logs:{'1-18':{J:'2026-10-23',K:'Yes',N:55}}};run('previewRecords(JSON.stringify(failRecords))');
+const prior=run('JSON.stringify(state)');context.localStorage.setItem=()=>{throw Error('full')};nodes.get('#merge-backup').onclick();assert.equal(run('JSON.stringify(state)'),prior);assert(nodes.get('#restore-preview').textContent.includes('could not be saved'));
+console.log('PASS: record preview, confirm import, duplicate protection, invalid JSON and rollback on storage failure.');
