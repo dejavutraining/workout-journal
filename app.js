@@ -53,6 +53,7 @@ content.querySelector('#pause').onclick=()=>{if(valid()){save();renderResume()}}
 }
 
 function renderExerciseEffort(a,rows,i,r,e){
+if(e.effort===''||e.effort==null){e.effort='6';save()}
 content.innerHTML=`<p class="eyebrow">DAY ${a.day} · EXERCISE ${i+1} OF ${rows.length}</p><article class="focus-card"><h2>${esc(r.C)}</h2><p>${e.setLog.length} sets recorded</p><label class="exercise-effort">Overall exercise effort (1-10)<select id="exercise-effort"><option value="">Choose effort</option>${Array.from({length:10},(_,n)=>`<option value="${n+1}" ${Number(e.effort)===n+1?'selected':''}>${n+1}${n===0?' - Very easy':n===9?' - Maximum effort':''}</option>`).join('')}</select></label><label class="notes">Notes<textarea id="exercise-notes" rows="2">${esc(e.notes)}</textarea></label></article><div class="flow-actions"><button id="edit-sets">Edit sets</button><button class="primary" id="complete-exercise">${i===rows.length-1?'Complete & review':'Complete & next'}</button></div><button id="pause">Pause</button>`;
 content.querySelector('#exercise-effort').onchange=ev=>{e.effort=ev.target.value;save()};
 content.querySelector('#exercise-notes').oninput=ev=>{e.notes=ev.target.value;save()};
