@@ -2,6 +2,7 @@
 // Explicit aliases avoid assigning a misleading machine or movement to new exercises.
 const ExerciseVisuals = (() => {
   const cards = ['Cable Deadlift','Smith Deadlift','Lat Pulldown','Seated Row','Cable Chest Fly','Smith Squat','Leg Press (Smith)','Split Squat (Smith)','Overhead Press (Smith)','Bench Press (Smith)','Incline Press (Smith)','Shoulder Press (Cable)','Lateral Raise (Cable)','Rear Delt Fly (Cable)','Face Pull','Upright Row (Cable)','Triceps Pushdown','Triceps Overhead Ext.','Biceps Curl (Cable)','Hammer Curl (Cable)','Cable Row (Single Arm)','Chest Press (Cable)','Woodchop (Cable)','Pallof Press (Cable)','Glute Kickback (Cable)','Hip Abduction (Cable)','Hip Adduction (Cable)','Cable Lunge','Standing Row (Cable)','Shrug (Smith)','Calf Raise (Smith)','Good Morning (Smith)'];
+  cards.push('Box squat patterning','Cable external rotation','Hip hinge drill','Cable pull-through','Bench step-up','Leg extension warm-up','Bench lying leg curl attachment','Squat-to-hinge flow','Incline push-up on Smith bar');
   const normalize = name => String(name ?? '').trim().toLowerCase().replace(/\s+/g, ' ');
   const aliases = {
     'Cable face pull': 'Face Pull',
