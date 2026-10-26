@@ -32,3 +32,7 @@ footer{color:var(--muted);font-size:10px;letter-spacing:2px}
 :is(input,textarea,select,button,summary,a):focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 button:disabled{opacity:.5;cursor:default}
 @media(hover:hover){nav button:hover,summary:hover{color:var(--accent)}button.primary:hover{filter:brightness(1.08)}}
+
+.exercise-visual{margin:8px 0 16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.exercise-visual img{display:block;width:191px;max-width:100%;height:auto;border-radius:12px;background:#fff}
+.exercise-visual figcaption{flex:1 1 160px;color:var(--muted);font-size:12px;line-height:1.6;max-width:32ch}
